@@ -8,144 +8,138 @@ import pink_sun from './assets/img/icon/pink_sun.png';
 import sun from './assets/img/icon/sun.png';
 import punk from './assets/img/icon/punk.png';
 import kupluk from './assets/img/icon/kupluk.png';
+import hello from './assets/img/icon/hello.png';
 
-  function App() {
-    const [formStep, setFormStep] = useState(1);
-    const [formData, setFormData] = useState(new FormData()); // State untuk menyimpan data formulir
+function App() {
+  const [formStep, setFormStep] = useState(1);
+  const [formData, setFormData] = useState(new FormData()); // State untuk menyimpan data formulir
 
-    function handleNextClick(e) {
-      e.preventDefault();
-      const dataform = document.querySelector("form");
-      const newData = new FormData(dataform);
-      for (let [key, value] of newData.entries()) {
-        formData.set(key, value); // Menambahkan data baru atau mengganti data yang sudah ada
+  function handleNextClick(e) {
+    e.preventDefault();
+    const dataform = document.querySelector("form");
+    const newData = new FormData(dataform);
+    for (let [key, value] of newData.entries()) {
+      formData.set(key, value); // Menambahkan data baru atau mengganti data yang sudah ada
+    }
+    setFormData(formData); // Menyimpan data formulir
+    setFormStep(formStep + 1);
+  }
+
+  function handleBackClick(e) {
+    e.preventDefault();
+    setFormStep(formStep - 1);
+  }
+
+  function handleSubmit(e) {
+    console.log("Form is being submitted");
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+    fetch(
+      "https://script.google.com/macros/s/AKfycbzPssuM4H4M2avZ7-Xb1KFrqXyogqm463YUd8LtTD6zqzPqXwhSMcRzg5Lqi-eTUGz0Fw/exec",
+      {
+        method: "POST",
+        body: formData
       }
-      setFormData(formData); // Menyimpan data formulir
-      setFormStep(formStep + 1);
-    }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Response from server:", data);
+      })
+      .catch((error) => {
+        console.error("Error submitting the form:", error);
+      });
+  }
 
-    function handleBackClick(e) {
-      e.preventDefault();
-      setFormStep(formStep - 1);
-    }
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      console.log("Form is being submitted");
-      for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
-      fetch(
-        "https://script.google.com/macros/s/AKfycbzPssuM4H4M2avZ7-Xb1KFrqXyogqm463YUd8LtTD6zqzPqXwhSMcRzg5Lqi-eTUGz0Fw/exec",
-        {
-          method: "POST",
-          body: formData
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          console.log("Response from server:", data);
-        })
-        .catch((error) => {
-          console.error("Error submitting the form:", error);
-        });
-    }
+  const [selectedOption, setSelectedOption] = useState('');
 
-    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
 
-    const [selectedOption, setSelectedOption] = useState('');
-
-    const toggleDropdown = () => {
-      setIsDropdownVisible(!isDropdownVisible);
-    };
-
-    const handleOptionChange = (event) => {
-      setSelectedOption(event.target.value);
-      setIsDropdownVisible(false); // Tutup dropdown setelah dipilih
-      formData.set('Lokasi', event.target.value);
-    };
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+    setIsDropdownVisible(false); // Tutup dropdown setelah dipilih
+    formData.set('Lokasi', event.target.value);
+  };
 
 
-    return (
-      <>
-        <div
-          className="bg-cover bg-center min-h-screen flex items-center justify-center"
-          style={{
-            backgroundColor: 'rgb(250, 186, 240)',
-          }}
-        >
-          <div className='text-blue-700'>
-            <form onSubmit={formStep === 10 ? handleSubmit : handleNextClick}>
-              {formStep === 1 && (
-                <div>
-                  <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-lg relative z-10 shadow-[5px_5px_0px_1px_#0025EF] text-lg sm:text-xl md:text-2xl lg:text-3xl text-center">
-                    <img
-                      src={baby}
-                      alt="icon"
-                      className="absolute -top-8 sm:-top-10 md:-top-12 lg:-top-14 left-1/2 transform -translate-x-1/2 w-10 sm:w-12 md:w-14 lg:w-16 rounded-full"
-                    />
+  return (
+    <>
+      <div
+        className="bg-cover bg-center min-h-screen flex items-center justify-center"
+        style={{
+          backgroundColor: 'rgb(250, 186, 240)',
+        }}
+      >
+        <div className='text-blue-700'>
+          <form onSubmit={formStep === 11 ? handleSubmit : handleNextClick}>
+            {formStep === 1 && (
+              <div>
+                <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-lg relative z-10 shadow-[5px_5px_0px_1px_#0025EF] text-lg sm:text-xl md:text-2xl lg:text-3xl text-center">
+                  <img
+                    src={baby}
+                    alt="icon"
+                    className="absolute -top-8 sm:-top-10 md:-top-12 lg:-top-14 left-1/2 transform -translate-x-1/2 w-10 sm:w-12 md:w-14 lg:w-16 rounded-full"
+                  />
 
-                    <div>
-                      HELLO!
-                    </div>
-                    <div>
-                      Congratulation, you are loved by Elvira. So, Elvira gonna make some surprise for you. Curious what it is? Let`s go next!
-                    </div>
+                  <div>
+                    HELLO!
                   </div>
-
-
-                  <img src={kupluk} className="w-full max-w-xs mx-auto" alt="Kupluk" />
-
-
-
-                  <div className="flex justify-between max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
-                    <button
-                      onClick={handleBackClick}
-                      className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 sm:px-4 md:px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]"
-                    >
-                      Back
-                    </button>
-                    <button
-                      className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 sm:px-4 md:px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]"
-                    >
-                      <img src={rightarrow} alt="Next" className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8" />
-                    </button>
+                  <div>
+                    Congratulation, you are loved by Elvira. So, Elvira gonna make some surprise for you. Curious what it is? Let`s go next!
                   </div>
                 </div>
-              )}
 
-              {formStep === 2 && (
-                <>
-                  <div>
-                    <div className='space-y-4'>
-                      <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-lg relative z-10 shadow-[5px_5px_0px_1px_#0025EF] text-lg sm:text-xl md:text-2xl lg:text-3xl text-center space-y-4">
-                        <img src={hair}
-                          alt="Overlapping"
-                          className="absolute -top-14 sm:-top-10 md:-top-12 lg:-top-14 left-1/2 transform -translate-x-1/2 w-20 sm:w-16 md:w-18 lg:w-20 rounded-full" />
 
-                        <div>
-                          But, before we start i know you love me. So tell me a wish or anything you want to say to me, or maybe some secret you want me to know
-                        </div>
+                <img src={kupluk} className="w-full max-w-xs mx-auto" alt="Kupluk" />
+
+
+
+                <div className="flex justify-between max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
+                  <button
+                    onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 sm:px-4 md:px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]"
+                  >
+                    <img src={rightarrow} alt="Next" className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8" />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {formStep === 2 && (
+              <>
+                <div>
+                  <div className='space-y-4'>
+                    <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-lg relative z-10 shadow-[5px_5px_0px_1px_#0025EF] text-lg sm:text-xl md:text-2xl lg:text-3xl text-center space-y-4">
+                      <img src={hair}
+                        alt="Overlapping"
+                        className="absolute -top-14 sm:-top-10 md:-top-12 lg:-top-14 left-1/2 transform -translate-x-1/2 w-20 sm:w-16 md:w-18 lg:w-20 rounded-full" />
+
+                      <div>
+                        But, before we start i know you love me. So tell me a wish or anything you want to say to me, or maybe some secret you want me to know
                       </div>
+                    </div>
 
-                      <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-lg relative z-10 shadow-[5px_5px_0px_1px_#0025EF] text-lg sm:text-xl md:text-2xl lg:text-3xl text-center">
+                    <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-lg relative z-10 shadow-[5px_5px_0px_1px_#0025EF] text-lg sm:text-xl md:text-2xl lg:text-3xl text-center">
                       <textarea
                         name='Pesan'
                         className="w-full h-30 sm:h-38 md:h-48 lg:h-56 p-2 border-2 border-gray-300 rounded-lg resize-none"
                         placeholder="Tulis pesan kamu di sini..."
                       ></textarea>
-                      </div>
+                    </div>
 
-                      <div className="flex justify-between max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
-                        <button onClick={handleBackClick} className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">Back</button>
-                        <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
-                          <img src={rightarrow} alt="Next" className='h-10 w-10' />
-                        </button>
-                      </div>
+                    <div className="flex justify-between max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
+                      <button onClick={handleBackClick} className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">Back</button>
+                      <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                        <img src={rightarrow} alt="Next" className='h-10 w-10' />
+                      </button>
                     </div>
                   </div>
-                </>
-              )}
+                </div>
+              </>
+            )}
 
             {formStep === 3 && (
               <div>
@@ -190,7 +184,7 @@ import kupluk from './assets/img/icon/kupluk.png';
 
                 <div className="flex justify-between">
                   <button onClick={handleBackClick} className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">Back</button>
-                  <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                  <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                     <img src={rightarrow} alt="Next" className='h-10 w-10' />
                   </button>
                 </div>
@@ -234,7 +228,7 @@ import kupluk from './assets/img/icon/kupluk.png';
 
                   <div className="flex justify-between">
                     <button onClick={handleBackClick} className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">Back</button>
-                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className='h-10 w-10' />
                     </button>
                   </div>
@@ -261,7 +255,7 @@ import kupluk from './assets/img/icon/kupluk.png';
 
                 <div className="flex justify-between">
                   <button onClick={handleBackClick} className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">Back</button>
-                  <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                  <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                     <img src={rightarrow} alt="Next" className='h-10 w-10' />
                   </button>
                 </div>
@@ -320,7 +314,7 @@ import kupluk from './assets/img/icon/kupluk.png';
                     >
                       Back
                     </button>
-                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className="h-10 w-10" />
                     </button>
                   </div>
@@ -380,7 +374,7 @@ import kupluk from './assets/img/icon/kupluk.png';
                     >
                       Back
                     </button>
-                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className="h-10 w-10" />
                     </button>
                   </div>
@@ -441,7 +435,7 @@ import kupluk from './assets/img/icon/kupluk.png';
                     >
                       Back
                     </button>
-                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className="h-10 w-10" />
                     </button>
                   </div>
@@ -501,7 +495,7 @@ import kupluk from './assets/img/icon/kupluk.png';
                     >
                       Back
                     </button>
-                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className="h-10 w-10" />
                     </button>
                   </div>
@@ -582,19 +576,37 @@ import kupluk from './assets/img/icon/kupluk.png';
                     >
                       Back
                     </button>
-                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button onClick={handleSubmit} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className="h-10 w-10" />
                     </button>
-                  </div> 
+                  </div>
                 </div>
+
               </>
             )}
 
             {formStep === 11 && (
               <>
-                <div className="max-w-sm mx-auto bg-blue-700 p-3 rounded-lg relative z-10 shadow-[5px_5px_0px_1px_#F1EA42] text-3xl text-center text-yellow-300">
-                  Thank You
+
+                <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-lg relative z-10 shadow-[5px_5px_0px_1px_#0025EF] text-lg sm:text-xl md:text-2xl lg:text-3xl text-center space-y-4">
+                  <div>
+                    <div>
+                      THANK YOU,
+                    </div>
+                    <div>
+                      LOVE YOU,
+                    </div>
+                    <div>
+                      ALWAYS XOXO,
+                    </div>
+                  </div>
+                  <div>
+                    <img src={hello} className=" max-w-xs mx-auto w-50 sm:w-52 md:w-54 lg:w-56" alt="Kupluk" />
+                  </div>
                 </div>
+                <img src={cat} className="w-full max-w-xs mx-auto" alt="Kupluk" />
+
+
               </>
             )}
 
