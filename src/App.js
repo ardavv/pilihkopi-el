@@ -100,7 +100,7 @@ function App() {
 
                 <div className="flex justify-between max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
                   <button
-                    onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 sm:px-4 md:px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]"
+                    className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 sm:px-4 md:px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]"
                   >
                     <img src={rightarrow} alt="Next" className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8" />
                   </button>
@@ -127,12 +127,14 @@ function App() {
                         name='Pesan'
                         className="w-full h-30 sm:h-38 md:h-48 lg:h-56 p-2 border-2 border-gray-300 rounded-lg resize-none"
                         placeholder="Tulis pesan kamu di sini..."
+
+                        required
                       ></textarea>
                     </div>
 
                     <div className="flex justify-between max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
-                      <button onClick={handleBackClick} className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">Back</button>
-                      <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                      <button className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">Back</button>
+                      <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                         <img src={rightarrow} alt="Next" className='h-10 w-10' />
                       </button>
                     </div>
@@ -160,21 +162,21 @@ function App() {
                 <div className="mb-5 max-w-sm mx-auto p-8 rounded-lg shadow-lg relative z-10">
                   <div className=" ">
                     <label className="cursor-pointer flex flex-col items-center">
-                      <input type="radio" name="Pilihan" value="coffee" className="hidden peer" />
+                      <input type="radio" name="Pilihan" value="coffee" className="hidden peer" required/>
                       <div className="w-24 h-10 mb-2 rounded-lg border-2 border-transparent peer-checked:bg-blue-300 shadow-[5px_5px_0px_0px_#0025EF] bg-white text-center">
                         <span>Coffee</span>
                       </div>
                     </label>
 
                     <label className="cursor-pointer flex flex-col items-center">
-                      <input type="radio" name="Pilihan" value="tea" className="hidden peer" />
+                      <input type="radio" name="Pilihan" value="tea" className="hidden peer" required/>
                       <div className="w-24 h-10 mb-2 rounded-lg border-2 border-transparent peer-checked:bg-blue-300 shadow-[5px_5px_0px_0px_#0025EF] bg-white text-center">
                         <span>Tea</span>
                       </div>
                     </label>
 
                     <label className="cursor-pointer flex flex-col items-center">
-                      <input type="radio" name="Pilihan" value="non-coffee" className="hidden peer" />
+                      <input type="radio" name="Pilihan" value="non-coffee" className="hidden peer" required/>
                       <div className="w-24 h-10 mb-2 rounded-lg border-2 border-transparent peer-checked:bg-blue-300 shadow-[5px_5px_0px_0px_#0025EF] bg-white text-center">
                         <span>Non - Coffee</span>
                       </div>
@@ -184,7 +186,7 @@ function App() {
 
                 <div className="flex justify-between">
                   <button onClick={handleBackClick} className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">Back</button>
-                  <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                  <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                     <img src={rightarrow} alt="Next" className='h-10 w-10' />
                   </button>
                 </div>
@@ -228,7 +230,7 @@ function App() {
 
                   <div className="flex justify-between">
                     <button onClick={handleBackClick} className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">Back</button>
-                    <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className='h-10 w-10' />
                     </button>
                   </div>
@@ -255,7 +257,7 @@ function App() {
 
                 <div className="flex justify-between">
                   <button onClick={handleBackClick} className="bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">Back</button>
-                  <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                  <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                     <img src={rightarrow} alt="Next" className='h-10 w-10' />
                   </button>
                 </div>
@@ -314,7 +316,7 @@ function App() {
                     >
                       Back
                     </button>
-                    <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className="h-10 w-10" />
                     </button>
                   </div>
@@ -374,7 +376,7 @@ function App() {
                     >
                       Back
                     </button>
-                    <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className="h-10 w-10" />
                     </button>
                   </div>
@@ -435,7 +437,7 @@ function App() {
                     >
                       Back
                     </button>
-                    <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className="h-10 w-10" />
                     </button>
                   </div>
@@ -495,7 +497,7 @@ function App() {
                     >
                       Back
                     </button>
-                    <button onClick={handleNextClick} className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
+                    <button className="text-white bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-[5px_5px_0px_0px_#0025EF]">
                       <img src={rightarrow} alt="Next" className="h-10 w-10" />
                     </button>
                   </div>
@@ -547,19 +549,19 @@ function App() {
                           <ul className="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">
                             <li>
                               <div className="flex items-center">
-                                <input id="default-radio-1" type="radio" value="Selasar FIK" name="Lokasi" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" onChange={handleOptionChange} />
+                                <input id="default-radio-1" type="radio" value="Selasar FIK" name="Lokasi" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required onChange={handleOptionChange} />
                                 <label htmlFor="default-radio-1" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Selasar FIK</label>
                               </div>
                             </li>
                             <li>
                               <div className="flex items-center">
-                                <input id="default-radio-2" type="radio" value="Smile Garden" name="Lokasi" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" onChange={handleOptionChange} />
+                                <input id="default-radio-2" type="radio" value="Smile Garden" name="Lokasi" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required onChange={handleOptionChange} />
                                 <label htmlFor="default-radio-2" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Smile Garden</label>
                               </div>
                             </li>
                             <li>
                               <div className="flex items-center">
-                                <input id="default-radio-3" type="radio" value="Sekret BEM FIK" name="Lokasi" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" onChange={handleOptionChange} />
+                                <input id="default-radio-3" type="radio" value="Sekret BEM FIK" name="Lokasi" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required onChange={handleOptionChange} />
                                 <label htmlFor="default-radio-3" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sekret BEM FIK</label>
                               </div>
                             </li>
